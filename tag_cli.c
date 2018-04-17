@@ -6,6 +6,14 @@
 int usage (const char *argv0)
 {
   fprintf(stderr, "Usage: %s OPTIONS FILE ...\n", argv0);
+  fprintf(stderr, "Available options are :\n");
+  fprintf(stderr, "  -a  artist name\n");
+  fprintf(stderr, "  -d  album title\n");
+  fprintf(stderr, "  -g  genre\n");
+  fprintf(stderr, "  -n  track number\n");
+  fprintf(stderr, "  -t  title\n");
+  fprintf(stderr, "  -y  year\n");
+  fprintf(stderr, "  -_  KEY VALUE\n");
   return 1;
 }
 
