@@ -1,14 +1,14 @@
 
-PROGRAM = lib .so
+PROGRAM = tag
 SRCDIR = ../..
 
 CPPFLAGS =
-CFLAGS = -O0 -ggdb -W -Wall -Werror -fpic
+CFLAGS = -O0 -ggdb -W -Wall -Werror
 
-LDFLAGS = -fPIC -shared
+LDFLAGS =
 LIBS =
-HEADERS =
-OBJECTS =
+HEADERS = tag.h
+OBJECTS = tag.o tag_cli.o
 
 SRC = ${HEADERS} ${OBJECTS:%.o=%.c}
 

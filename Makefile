@@ -1,5 +1,5 @@
 
-SUBDIRS = demo so
+SUBDIRS = tag tag_so
 
 all: ${SUBDIRS}
 all: TARGET =
