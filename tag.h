@@ -8,14 +8,14 @@
 #define TAG_START "\0\0\n<tag>\n"
 #define TAG_START_LEN 9
 
-#define TAG_END "\n</tag>\n\0\0"
-#define TAG_END_LEN 10
+#define TAG_END "</tag>\n\0\0"
+#define TAG_END_LEN 9
 
 #define TAG_SEARCH_LEN 2048
 
 /* 1. TAG DATA : read and write tag data region from and to file. */
 /* TAG DATA is limited to 2048 bytes including start and end markers. */
-/* Actual TAG DATA payload can thus be 2029 bytes large. */
+/* Actual TAG DATA payload can thus be 2030 bytes large. */
 /* It is not a short story, only inline metadata about current file. */
 
 typedef struct tag_data {
