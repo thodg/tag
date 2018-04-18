@@ -1,32 +1,19 @@
 /* Copyright 2018 Thomas de Grivel <thoxdg@gmail.com> 0614550127 */
 
 #include <stdio.h>
+#include <string.h>
 #include "tag.h"
 
 #define SEARCH_SIZE 4096
 
-static int tag_cmp (const char *buf1, const char *buf2, unsigned count);
 static long tag_file_size (FILE *fp);
-
-int tag_cmp (const char *buf1, const char *buf2, unsigned count)
-{
-  unsigned i = 0;
-  while (i < count) {
-    if (buf1[i] < buf2[i])
-      return -1;
-    if (buf1[i] > buf2[i])
-      return 1;
-    i++;
-  }
-  return 0;
-}
 
 int tag_search (const char *buf, const char *tag, unsigned len,
                 unsigned start)
 {
   unsigned end = TAG_SEARCH_LEN - len;
   while (start < end) {
-    if (tag_cmp(buf + start, tag, len) == 0)
+    if (memcmp(buf + start, tag, len) == 0)
       return start;
     start++;
   }
@@ -67,7 +54,7 @@ int tag_data_read (FILE *fp, s_tag_data *tag_data)
   int end;
   if (br < TAG_START_LEN + TAG_END_LEN)
     return -1;
-  if (tag_cmp(TAG_START, tag_data->byte, TAG_START_LEN))
+  if (memcmp(TAG_START, tag_data->byte, TAG_START_LEN))
     return -1;
   end = tag_search(tag_data->byte, TAG_END, TAG_END_LEN, TAG_START_LEN);
   if (end < 0)
