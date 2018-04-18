@@ -124,3 +124,38 @@ int tag_data_to_path (const char *path, s_tag_data *tag_data)
   fclose(fp);
   return result;
 }
+
+void tag_data_mem (s_tag_data *tag_data, const char *buf, unsigned len)
+{
+  memcpy(tag_data->byte + tag_data->len, buf, len);
+  tag_data->len += len;
+}
+
+void tag_data_str (s_tag_data *tag_data, const char *str)
+{
+  unsigned len = strlen(str);
+  memcpy(tag_data->byte + tag_data->len, str, len);
+  tag_data->len += len;
+}
+
+void tag_data_tag (s_tag_data *tag_data, const char *key,
+                   const char *value)
+{
+  tag_data_str(tag_data, " <");
+  tag_data_str(tag_data, key);
+  tag_data_str(tag_data, ">");
+  tag_data_str(tag_data, value);
+  tag_data_str(tag_data, "</");
+  tag_data_str(tag_data, key);
+  tag_data_str(tag_data, ">\n");
+}
+
+void tag_data_start (s_tag_data *tag_data)
+{
+  tag_data->len = 0;
+  tag_data_mem(tag_data, TAG_START, TAG_START_LEN);
+}
+
+void tag_data_end (s_tag_data *tag_data) {
+  tag_data_mem(tag_data, TAG_END, TAG_END_LEN);
+}

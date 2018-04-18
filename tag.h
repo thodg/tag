@@ -33,9 +33,19 @@ int tag_data_write (FILE *fp, s_tag_data *tag_data);
 int tag_data_to_file (FILE *fp, s_tag_data *tag_data);
 int tag_data_to_path (const char *path, s_tag_data *tag_data);
 
+/* write to s_tag_data */
+
+void tag_data_mem (s_tag_data *tag_data, const char *buf, unsigned len);
+void tag_data_str (s_tag_data *tag_data, const char *str);
+void tag_data_start (s_tag_data *tag_data);
+void tag_data_end (s_tag_data *tag_data);
+void tag_data_tag (s_tag_data *tag_data, const char *key,
+                   const char *value);
+
 /* 2. TAG : structure tag data region from and to actual tags */
 /* actually tag data is xml enclosed in TAG_START and TAG_END */
 /* known tags are : title, track, artist, album, year, genre. */
 /* Just use XML library to read and write tags to s_tag_data. */
+
 
 #endif /* TAG_H */
