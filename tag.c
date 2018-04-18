@@ -67,20 +67,31 @@ int tag_data_from_file (FILE *fp, s_tag_data *tag_data)
 {
   if (!fp)
     return -1;
-  if (tag_data_seek(fp) < 0)
+  if (fseek(fp, -TAG_SEARCH_LEN, SEEK_END) < 0)
     return -1;
+  if (tag_data_seek(fp) < 0) {
+    fseek(fp, 0, SEEK_SET);
+    if (tag_data_seek(fp) < 0)
+      return -1;
+  }
   return tag_data_read(fp, tag_data);
 }
 
 int tag_data_from_path (const char *path, s_tag_data *tag_data)
 {
   FILE *fp = fopen(path, "r");
-  int result;
+  int result = -1;
   if (!fp)
-    return -1;
-  if (tag_data_seek(fp) < 0)
-    return -1;
+    goto end;
+  if (fseek(fp, -TAG_SEARCH_LEN, SEEK_END) < 0)
+    goto end;
+  if (tag_data_seek(fp) < 0) {
+    fseek(fp, 0, SEEK_SET);
+    if (tag_data_seek(fp) < 0)
+      goto end;
+  }
   result = tag_data_read(fp, tag_data);
+ end:
   fclose(fp);
   return result;
 }
