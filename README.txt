@@ -13,3 +13,26 @@ tagging.
 
 Tagging is inline or offline, uses XML tags for extensible purposes,
 and HTML support for fonts is a side effect.
+
+
+CLI
+===
+
+A basic command line interface is available. For now it just generates
+embeddable tags based on command line arguments.
+
+It should really allow to read and edit tags from media files. This is work
+in progress.
+
+
+DEMUX
+=====
+
+A UNIX demuxer is in progress too to filter between stream data and tagging
+data which is sent to a different file descriptor.
+
+
+META
+====
+
+This README is TXT, because fuck Markdown.
