@@ -1,5 +1,5 @@
 
-SUBDIRS = tag tag_so
+SUBDIRS = tag tag_demux tag_so
 
 all: ${SUBDIRS}
 all: TARGET =
