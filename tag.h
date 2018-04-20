@@ -64,16 +64,16 @@ void tag_data_end (s_tag_data *td);
 void tag_data_tag (s_tag_data *td, const char *key, const char *value);
 
 /* read next key value from s_tag_data, return position */
-int tag_data_read (s_tag_data *td, int start,
-                   char *key, unsigned key_size,
-                   char *value, unsigned value_size);
+int tag_read (s_tag_data *td, int start,
+              char *key, unsigned key_size,
+              char *value, unsigned value_size);
 
 /* find position of key in s_tag_data */
-int tag_data_find (s_tag_data *td, int start, const char *key);
+int tag_find (s_tag_data *td, int start, const char *key);
 
 /* get value of key in s_tag_data */
-int tag_data_get (s_tag_data *td, int start, const char *key,
-                  char *value, unsigned value_size);
+int tag_get (s_tag_data *td, int start, const char *key,
+             char *value, unsigned value_size);
 
 /* 2. TAG : structure tag data region from and to actual tags */
 /* actually tag data is xml enclosed in TAG_START and TAG_END */
